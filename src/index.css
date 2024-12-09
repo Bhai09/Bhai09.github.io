@@ -1,0 +1,159 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-red-950 overflow-x-hidden;
+  }
+}
+
+@layer utilities {
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+
+  .transform-style-3d {
+    transform-style: preserve-3d;
+  }
+
+  .drop-shadow-glow {
+    filter: drop-shadow(0 0 10px rgba(255, 0, 0, 0.5));
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+/* App.css */
+
+body {
+  font-family: sans-serif;
+}
+
+/* Zigzag Cloud Effect */
+.protrude-left {
+  position: relative;
+  border-radius: 30% 40% 30% 40%; /* Rounded left side */
+  transform: scale(1.05) translateX(-10px);
+}
+
+.protrude-left::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: -20px;
+  width: 30px;
+  height: 20px;
+  background-color: inherit;
+  border-radius: 50%;
+  transform: translateY(-50%);
+}
+
+/* Protruding Effect for Right-side */
+.protrude-right {
+  position: relative;
+  border-radius: 40% 30% 40% 30%; /* Rounded right side */
+  transform: scale(1.05) translateX(10px);
+}
+
+.protrude-right::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: -20px;
+  width: 30px;
+  height: 20px;
+  background-color: inherit;
+  border-radius: 50%;
+  transform: translateY(-50%);
+}
+
+/* Add shadow and transitions for smooth hover effect */
+.protrude-left:hover, .protrude-right:hover {
+  transform: scale(1.1) translateX(10px);
+}
+
+/* Make sure the cloud text is centered properly */
+.protrude-left, .protrude-right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.min-h-screen {
+  min-height: 100vh;
+}
+
+.bg-gradient-to-b {
+  background: linear-gradient(to bottom, #330000, #660000);
+}
+
+.text-white {
+  color: white;
+}
+
+.text-2xl {
+  font-size: 1.5rem;
+}
+
+.text-3xl {
+  font-size: 1.875rem;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.font-medium {
+  font-weight: 500;
+}
+
+.p-8 {
+  padding: 2rem;
+}
+
+.relative {
+  position: relative;
+}
+
+.absolute {
+  position: absolute;
+}
+
+.rounded-3xl {
+  border-radius: 1.5rem;
+}
+
+.shadow-xl {
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+.backdrop-blur-sm {
+  backdrop-filter: blur(10px);
+}
+
+.bg-gradient-to-r {
+  background: linear-gradient(to right, #ff0000, #ff7f00);
+}
+
+.bg-gradient-to-br {
+  background: linear-gradient(to bottom right, #ff0000, #ff7f00);
+}
+
+.blur-md {
+  filter: blur(8px);
+}
+
+.opacity-50 {
+  opacity: 0.5;
+}
