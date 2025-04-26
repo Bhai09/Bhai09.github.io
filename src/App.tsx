@@ -20,7 +20,6 @@ function App() {
 
   return (
     <div className="relative min-h-screen bg-gradient-to-b from-zinc-900 to-zinc-800 overflow-hidden">
-      <audio src="https://jmp.sh/s/PgjRj26xvzAeDgkxouPU" autoPlay loop muted />
       <div 
         className="absolute inset-0 w-full h-full bg-no-repeat bg-bottom opacity-20"
         style={{
@@ -39,6 +38,7 @@ function App() {
       
       {showConfetti && <Confetti />}
     </div>
+  );
 }
 
 export default App;
