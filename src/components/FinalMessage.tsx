@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { Sparkles } from 'lucide-react';
 import { useScrollPosition } from '../hooks/useScrollPosition';
 
@@ -6,6 +6,8 @@ const FinalMessage: React.FC = () => {
   const scrollPosition = useScrollPosition();
   const [isVisible, setIsVisible] = useState(false);
   const [showSparkles, setShowSparkles] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const audioRef = useRef<HTMLAudioElement>(null);
   
   useEffect(() => {
     if (scrollPosition > 1400 && !isVisible) {
@@ -16,8 +18,16 @@ const FinalMessage: React.FC = () => {
     }
   }, [scrollPosition, isVisible]);
 
+  const handlePlayClick = () => {
+    if (audioRef.current) {
+      audioRef.current.play();
+      setIsPlaying(true);
+    }
+  };
+
   return (
     <section className="min-h-screen flex flex-col items-center justify-center relative px-4 py-16">
+      <audio ref={audioRef} src="https://jmp.sh/s/PgjRj26xvzAeDgkxouPU" loop />
       <div className="absolute inset-0 bg-gradient-to-br from-blue-900/60 to-red-600/60" />
       
       {showSparkles && (
@@ -70,16 +80,34 @@ const FinalMessage: React.FC = () => {
         </div>
         
         <div className="mt-8">
-          <button
-            className="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-lg shadow-lg transform transition-transform hover:scale-105 focus:outline-none"
-            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          >
-            Back to Top
-          </button>
+          {!isPlaying ? (
+            <div className="flex flex-col items-center cursor-pointer" onClick={handlePlayClick}>
+              <div className="mb-2 px-4 py-2 bg-white bg-opacity-80 rounded-full shadow-lg text-black text-sm font-semibold select-none">
+                Play to listen
+              </div>
+              <button className="w-14 h-14 rounded-full bg-blue-600 hover:bg-blue-700 text-white flex items-center justify-center shadow-lg focus:outline-none">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M14.752 11.168l-6.518-3.75A1 1 0 007 8.25v7.5a1 1 0 001.234.97l6.518-1.875a1 1 0 000-1.82z" />
+                </svg>
+              </button>
+            </div>
+          ) : (
+            <button
+              className="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-lg shadow-lg focus:outline-none"
+              onClick={() => {
+                if (audioRef.current) {
+                  audioRef.current.pause();
+                }
+                setIsPlaying(false);
+              }}
+            >
+              Pause
+            </button>
+          )}
         </div>
       </div>
     </section>
   );
 };
 
-export default FinalMessage
+export default FinalMessage;
