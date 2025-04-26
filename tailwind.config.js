@@ -3,9 +3,12 @@ export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
-      container: {
-        center: true,
-        padding: '2rem',
+      animation: {
+        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+      },
+      fontFamily: {
+        comic: ['Bangers', 'cursive'],
+        body: ['Poppins', 'sans-serif'],
       },
     },
   },

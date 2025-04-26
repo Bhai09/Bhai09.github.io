@@ -1,42 +1,43 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { Navbar } from './components/Navbar';
-import { Hero } from './components/Hero';
-import { AboutUs } from './components/AboutUs';
-import { Services } from './components/Services';
-import { Team } from './components/Team';
-import { Portfolio } from './components/Portfolio';
-import { Technologies } from './components/Technologies';
-import { Contact } from './components/Contact';
-import { Footer } from './components/Footer';
-import { Projects } from './pages/Projects';
-
-function Home() {
-  return (
-    <>
-      <Navbar />
-      <Hero />
-      <AboutUs />
-      <Services />
-      <Portfolio />
-      <Team />
-      <Technologies />
-      <Contact />
-      <Footer />
-    </>
-  );
-}
+import React, { useEffect, useState } from 'react';
+import HeroHeader from './components/HeroHeader';
+import IronManMessage from './components/IronManMessage';
+import BatmanRobinMessage from './components/BatmanRobinMessage';
+import FinalMessage from './components/FinalMessage';
+import Confetti from './components/Confetti';
+import { useScrollPosition } from './hooks/useScrollPosition';
 
 function App() {
+  const [showConfetti, setShowConfetti] = useState(false);
+  const scrollPosition = useScrollPosition();
+  
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowConfetti(true);
+    }, 2000);
+    
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
-    <Router>
-      <main className="min-h-screen bg-gray-900">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/projects" element={<Projects />} />
-        </Routes>
-      </main>
-    </Router>
+    <div className="relative min-h-screen bg-gradient-to-b from-zinc-900 to-zinc-800 overflow-hidden">
+      <div 
+        className="absolute inset-0 w-full h-full bg-no-repeat bg-bottom opacity-20"
+        style={{
+          backgroundImage: 'url("https://images.pexels.com/photos/466685/pexels-photo-466685.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2")',
+          backgroundSize: 'cover',
+          transform: `translateY(${scrollPosition * 0.2}px)`,
+        }}
+      />
+      
+      <div className="relative z-10">
+        <HeroHeader />
+        <IronManMessage />
+        <BatmanRobinMessage />
+        <FinalMessage />
+      </div>
+      
+      {showConfetti && <Confetti />}
+    </div>
   );
 }
 

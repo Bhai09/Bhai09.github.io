@@ -2,18 +2,30 @@
 @tailwind components;
 @tailwind utilities;
 
-.perspective {
-  perspective: 1000px;
+body {
+  margin: 0;
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
-.transform-style-3d {
-  transform-style: preserve-3d;
+html {
+  scroll-behavior: smooth;
 }
 
-.backface-hidden {
-  backface-visibility: hidden;
-}
-
-.rotate-y-180 {
-  transform: rotateY(180deg);
+@layer components {
+  /* Comic book style speech bubble */
+  .speech-bubble {
+    @apply relative bg-white p-4 rounded-lg;
+  }
+  
+  .speech-bubble::after {
+    content: '';
+    @apply absolute w-4 h-4 bg-white transform rotate-45;
+    bottom: -8px;
+    left: 24px;
+  }
 }

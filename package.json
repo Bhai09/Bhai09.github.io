@@ -1,5 +1,5 @@
 {
-  "name": "niche-creators",
+  "name": "vite-react-typescript-starter",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -12,12 +12,7 @@
   "dependencies": {
     "lucide-react": "^0.344.0",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "framer-motion": "^11.0.8",
-    "react-use": "^17.5.0",
-    "clsx": "^2.1.0",
-    "@emailjs/browser": "^4.3.3",
-    "react-router-dom": "^6.22.3"
+    "react-dom": "^18.3.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.9.1",
